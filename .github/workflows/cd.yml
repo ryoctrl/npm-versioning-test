@@ -38,6 +38,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git branch
+          git fetch
           git checkout develop
           git add .
           git commit -m '[skip ci] Application update to ${{ steps.set_version.outputs.new_version }}'
