@@ -34,6 +34,9 @@ jobs:
           echo "::set-output name=new_version::${version}"
 
       - name: Push version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
