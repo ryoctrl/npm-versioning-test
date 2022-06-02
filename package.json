@@ -1,0 +1,7 @@
+{
+  "name": "npm-versioning-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "ryoctrl <ryoctrl@gmail.com>",
+  "license": "MIT"
+}
