@@ -34,17 +34,28 @@ jobs:
           echo "::set-output name=new_version::${version}"
 
       - name: Push version
-        uses: EndBug/add-and-commit@v9
-        id: push
-        with:
-          default_author: github_actions
-          message: 'Application update to ${{ steps.set_version.outputs.new_version }}'
-
-      - name: Push version to develop
         run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git checkout develop
-          git cherry-pick  ${{ steps.push.outputs.commit_sha }}
+          git add .
+          git commit -m '[skip ci] Application update to ${{ steps.set_version.outputs.new_version }}'
           git push origin develop
+          PR_URL=$(gh pr create -t "Application update to ${{ steps.set_version.outputs.new_version }}" -B master -l bot --fill)
+          gh pr merge ${PR_URL} -m
+
+      #- name: Push version
+      #  uses: EndBug/add-and-commit@v9
+      #  id: push
+      #  with:
+      #    default_author: github_actions
+      #    message: 'Application update to ${{ steps.set_version.outputs.new_version }}'
+
+      #- name: Push version to develop
+      #  run: |
+      #    git checkout develop
+      #    git cherry-pick  ${{ steps.push.outputs.commit_sha }}
+      #    git push origin develop
 
   notify-deploy-succeeded:
     name: Notify to Slack
