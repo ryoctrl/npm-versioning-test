@@ -13,7 +13,7 @@ Release <%= Time.now.strftime("%Y-%m-%d") %>
   <%= "- ##{pr.pr.number} @#{pr.pr.user.login}" %>
 <% end -%>
 
-<% if feature_prs.length == 0 -%>
+<% if feature_prs.length > 0 -%>
   <% client.add_labels_to_an_issue(repository, release_pr.number, labels) -%>
   <%= "Labeled" -%>
 <% end -%>
