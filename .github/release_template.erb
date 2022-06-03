@@ -15,7 +15,6 @@ Release <%= Time.now.strftime("%Y-%m-%d") %>
 
 <% if feature_prs.length > 0 -%>
   <% client.add_labels_to_an_issue(repository, release_pr.number, ["enhancement"]) -%>
-  <%= "Labeled" -%>
 <% end -%>
 
 
