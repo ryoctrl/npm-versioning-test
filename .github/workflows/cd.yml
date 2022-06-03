@@ -61,7 +61,7 @@ jobs:
         with:
           tag: ${{ steps.set_version.outputs.new_version }}
           name: Release ${{ steps.set_version.outputs.new_version }}
-          body: ${{ event.pull_request.body }}
+          body: ${{ github.event.pull_request.body }}
 
       #- name: Push version
       #  uses: EndBug/add-and-commit@v9
