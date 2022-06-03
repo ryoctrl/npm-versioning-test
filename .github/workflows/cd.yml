@@ -46,7 +46,7 @@ jobs:
           git fetch
           git checkout develop
           git add .
-          git commit -m '${message}'
+          git commit -m "${message}"
           git push origin develop
           PR_URL=$(gh pr create -t "${message}" -B master -l bot --fill)
           gh pr merge ${PR_URL} -m
