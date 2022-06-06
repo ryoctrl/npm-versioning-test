@@ -3,3 +3,4 @@ console.log('Inplemented!!!');
 console.log('Second implementation!!');
 console.log('hoge');
 console.log('hogehoge!!!');
+console.log('hoge');
