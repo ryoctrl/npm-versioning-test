@@ -51,13 +51,6 @@ jobs:
           PR_URL=$(gh pr create -t "${message}" -B ${{ env.TARGET_BRANCH }} -l bot --fill)
           gh pr merge ${PR_URL} -m
 
-      - name: Tagging new version
-        uses: mathieudutour/github-tag-action@v6.0
-        id: tag_version
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          custom_tag: ${{ steps.set_version.outputs.new_version }}
-
       - name: Create a Github release
         uses: ncipollo/release-action@v1
         with:
