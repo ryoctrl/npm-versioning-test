@@ -34,7 +34,7 @@ jobs:
         id: set_version
         run: |
           version=$(jq -r '.version' package.json)
-          echo "::set-output name=new_version::${version}"
+          echo "::set-output name=new_version::v${version}"
       - name: Push new version
         env:
           GH_TOKEN: ${{ github.token }}
