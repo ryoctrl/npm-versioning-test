@@ -26,7 +26,7 @@ jobs:
           env 'YARN_OPTION=--minor' >> $GITHUB_ENV
 
       - name: Bump version
-        uses: borales/actions-yarn@v2.3.0
+        uses: borales/actions-yarn@v3.0.0
         with:
           cmd: version --no-git-tag-version ${{ env.YARN_OPTION }}
 
@@ -35,17 +35,14 @@ jobs:
         run: |
           version=$(jq -r '.version' package.json)
           echo "::set-output name=new_version::${version}"
-
       - name: Push new version
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
           message='[skip ci] Application update to ${{ steps.set_version.outputs.new_version }}'
-
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git branch
           git fetch
           git checkout ${{ env.BASE_BRANCH }}
           git add .
